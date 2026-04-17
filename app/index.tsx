@@ -16,7 +16,7 @@ export default function LoginScreen() {
 
     if (email === 'test@gmail.com' && password === '123456') {
       Alert.alert('Success', 'Login successful!');
-      router.replace('/home');
+      router.replace('/(tabs)/home');
     } else {
       Alert.alert('Failed', 'Invalid credentials');
     }
