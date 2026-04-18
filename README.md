@@ -1,50 +1,97 @@
-# Welcome to your Expo app 👋
+# React Native Login App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 📱 Overview
 
-## Get started
+This is a simple React Native (Expo) application that demonstrates:
 
-1. Install dependencies
+* Mock authentication (login screen)
+* Navigation using Expo Router
+* Fetching data from a mock API
+* Displaying data using FlatList
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## 🚀 Features
 
-   ```bash
-   npx expo start
-   ```
+* Login screen with email & password validation
+* Mock authentication (no real backend)
+* Fetch user data from ReqRes API
+* Display user list with avatar, name, and email
+* Loading and error handling
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠 Tech Stack
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+* React Native (Expo)
+* Expo Router
+* JavaScript / TypeScript
+* Fetch API
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 📦 Setup Instructions
 
-```bash
-npm run reset-project
+1. Clone the repository:
+
+```
+git clone https://github.com/sakinasawal/MyLoginAppRN.git
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Navigate to project:
 
-## Learn more
+```
+cd MyLoginAppRN
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Install dependencies:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```
+npm install
+```
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## ▶️ How to Run the App
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Start the development server:
+
+```
+npx expo start
+```
+
+Then:
+
+* Press `i` for iOS simulator
+* Press `a` for Android emulator
+* Or scan QR using Expo Go app
+
+---
+
+## 🔐 Login Credentials (Mock)
+
+```
+Email: test@gmail.com
+Password: 123456
+```
+
+---
+
+## 🌐 API Used
+
+* https://jsonplaceholder.typicode.com/posts
+
+---
+
+## ⚠️ Assumptions
+
+* Authentication is mocked (no real backend)
+* Data is fetched from a public API
+* No persistent login (user must login each time)
+
+---
+
+## 📌 Notes
+
+* This project is built for assessment purposes
+* Focus is on functionality and clean structure
