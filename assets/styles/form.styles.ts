@@ -46,6 +46,15 @@ export const formStyles = StyleSheet.create({
     backgroundColor: '#f8fafc',
     marginBottom: 14,
   },
+  inputError: {
+    borderColor: '#dc2626',
+  },
+  errorText: {
+    color: '#dc2626',
+    fontSize: 12,
+    marginTop: -6,
+    marginBottom: 10,
+  },
   messageInput: {
     minHeight: 120,
   },

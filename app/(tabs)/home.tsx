@@ -1,37 +1,38 @@
 import { homeStyles } from '@/assets/styles/home.styles';
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import { fetchPosts, type Post } from '@/services/posts.api';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, RefreshControl, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-type Post = {
-  id: number;
-  title: string;
-  body: string;
-};
 
 export default function HomeScreen() {
   const [data, setData] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(false);
+  const [query, setQuery] = useState('');
 
-  const fetchData = async () => {
+  const loadData = async (isRefresh = false) => {
     try {
-      setLoading(true);
+      if (isRefresh) setRefreshing(true);
+      else setLoading(true);
       setError(false);
 
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-      const json: Post[] = await response.json();
-
-      setData(json);
+      const posts = await fetchPosts();
+      setData(posts);
     } catch {
       setError(true);
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
+  const onRefresh = useCallback(() => {
+    loadData(true);
+  }, []);
+
   useEffect(() => {
-    fetchData();
+    loadData();
   }, []);
 
   if (loading) {
@@ -64,11 +65,40 @@ export default function HomeScreen() {
           <Text style={homeStyles.headerSubtitle}>Latest posts from API</Text>
         </View>
 
+        <TextInput
+          style={homeStyles.searchBar}
+          placeholder="Search posts..."
+          placeholderTextColor="#94a3b8"
+          value={query}
+          onChangeText={setQuery}
+          clearButtonMode="while-editing"
+        />
+
         <FlatList<Post>
-          data={data}
+          data={data.filter(
+            (post) =>
+              post.title.toLowerCase().includes(query.toLowerCase()) ||
+              post.body.toLowerCase().includes(query.toLowerCase()),
+          )}
           keyExtractor={(item) => item.id.toString()}
           contentContainerStyle={homeStyles.listContent}
           showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              tintColor="#2563eb"
+              colors={['#2563eb']}
+            />
+          }
+          ListEmptyComponent={
+            <View style={homeStyles.centerContainer}>
+              <Text style={homeStyles.errorTitle}>📭</Text>
+              <Text style={homeStyles.helperText}>
+                {query ? `No results found for "${query}"` : 'No posts available. Pull down to refresh.'}
+              </Text>
+            </View>
+          }
           ItemSeparatorComponent={() => <View style={homeStyles.separator} />}
           renderItem={({ item }) => (
             <View style={homeStyles.card}>

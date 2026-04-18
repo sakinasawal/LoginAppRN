@@ -26,6 +26,17 @@ export const homeStyles = StyleSheet.create({
   listContent: {
     paddingBottom: 20,
   },
+  searchBar: {
+    backgroundColor: '#ffffff',
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    fontSize: 15,
+    color: '#0f172a',
+    marginBottom: 12,
+  },
   separator: {
     height: 12,
   },
